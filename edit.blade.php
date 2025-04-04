@@ -2,9 +2,6 @@
 @section('title', 'UPDATE')
 @section('content')
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-
     <style>
         .form-control {
             border-color: #2f82c3;
@@ -134,63 +131,12 @@
             color: white;
             /* สีตัวอักษร */
         }
-
-        .hidden {
-            display: none;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(-10px);
-            animation: fadeIn 0.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* เปลี่ยนสี Modal ให้ดูเด่น */
-        .modal-content {
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border: 2px solid #28a745;
-            /* สีเขียว */
-        }
-
-        .modal-header {
-            background-color: #28a745;
-            /* สีเขียว */
-            color: white;
-        }
-
-        .modal-footer button:hover {
-            background-color: #218838;
-            /* เปลี่ยนสีปุ่มเมื่อ hover */
-        }
-
-        .modal-body i {
-            font-size: 30px;
-            margin-right: 10px;
-        }
     </style>
 
     @if (session('success'))
-        <!-- Modal Popup -->
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content border-success">
-                    <div class="modal-header bg-success text-white">
-                        <h5 class="modal-title" id="successModalLabel">สำเร็จ!</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-success">
-                        <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
-                    </div>
-                </div>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{ session('success') }}
         </div>
     @endif
 
@@ -203,31 +149,12 @@
     @endif
 
 
-    <div data-aos="fade-up" data-aos-anchor-placement="bottom-center">
-        <h2 id="zoomText" class="text-center my-3 text-2xl font-bold"
-            style="transform: scale(0.8); opacity: 0; transition: transform 0.5s ease-out, opacity 0.5s ease-out;">
-            New Site
-        </h2>
-    </div>
+    <h2 class="text text-center " style="margin-top: 10px;">New Site</h2>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            AOS.init(); // เริ่มต้น AOS Animation
-    
-            // เพิ่ม Zoom-in เมื่อโหลดหน้า
-            setTimeout(() => {
-                let title = document.getElementById("zoomText");
-                title.style.transform = "scale(1)";
-                title.style.opacity = "1";
-            }, 200);
-        });
-    </script>
-
-    <div class="container input-group mb-3 input-group-sm  py-2 " data-aos="fade-up">
+    <div class="container input-group mb-3 input-group-sm  py-2 ">
 
         <!-- Main -->
-        <form id="updateForm" class="row g-3 custom-form" autocomplete="off" method="POST"
-            action="{{ route('update', $blog->id) }}">
+        <form class="row g-3 custom-form" autocomplete="off" method="POST" action="{{ route('update', $blog->id) }}">
             @csrf
 
 
@@ -339,7 +266,7 @@
                         @if (in_array(Auth::user()->status, [1, 4]))
 
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                     INVOICE STATUS
                                 </button>
@@ -491,7 +418,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         SAQ
                                     </button>
@@ -867,7 +794,7 @@
                             <!-- CR -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
                                         CR
@@ -1242,7 +1169,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
                                         TSSR
@@ -1405,9 +1332,8 @@
                                                     <label for="WO_Price_TSSR" class="me-4"
                                                         style="width: 100px;">WO_Price_TSSR</label>
                                                     <div class="d-flex flex-column ">
-                                                        <input type="number" name="WO_Price_TSSR"
-                                                            class="form-control" style="width: 160px;"
-                                                            placeholder="กรุณากรอกตัวเลข"
+                                                        <input type="number" name="WO_Price_TSSR" class="form-control"
+                                                            style="width: 160px;" placeholder="กรุณากรอกตัวเลข"
                                                             value="{{ $blog->WO_Price_TSSR }}">
                                                     </div>
                                                 </div>
@@ -1621,7 +1547,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingfive">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsefive" aria-expanded="false"
                                         aria-controls="collapsefive">
                                         CivilWork
@@ -2229,7 +2155,7 @@
                                 </div>
                             </div>
                         @endif
-
+                        
                     @endif
 
 
@@ -2388,7 +2314,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
                                         SAQ
@@ -2768,7 +2694,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
                                         CR
@@ -3269,7 +3195,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
                                         TSSR
@@ -3649,7 +3575,7 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingfive">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsefive" aria-expanded="false"
                                         aria-controls="collapsefive">
                                         CivilWork
@@ -4263,219 +4189,99 @@
 
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingsix">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
                                 ADDITIONAL
                             </button>
                         </h2>
-
+                    
                         <div id="collapsesix" class="accordion-collapse collapse" aria-labelledby="headingsix"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <div class="container input-group mb-3 input-group-sm  py-3 row g-3 custom-form">
-                                    <div class="status-row">
-                                        <h4>ADDITIONAL</h4>
-                                    </div>
-
+                                <div class="container py-3">
+                                    <h4 class="mb-3">ADDITIONAL</h4>
+                    
                                     <!-- บรรทัด 1 -->
-
-                                    <div class="col-md-3 d-flex align-items-center flex-wrap mt-2">
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="pile_supplier"
-                                                class="me-1
-                                                style="width:100px;>Plie Supplier</label>
-                                            <div class="d-flex flex-column ">
-                                                <input type="text" name="pile_supplier" class="form-control"
-                                                    style="width: 160px;" value="{{ $blog->pile_supplier }}">
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <div class="d-flex align-items-center">
+                                            <label for="pile_supplier" class="me-2" style="width: 90px;">Pile Supplier</label>
+                                            <input type="text" name="pile_supplier" class="form-control" style="width: 180px;" value="{{ $blog->pile_supplier }}">
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label for="price" class="me-2" style="width: 50px;">Price</label>
+                                            <input type="number" name="price" class="form-control" style="width: 180px;" placeholder="กรุณากรอกตัวเลข" value="{{ $blog->price }}">
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label for="pile_supplier_accept_date" class="me-2" style="width: 150px;">Pile Supplier Accept Date</label>
+                                            <div class="position-relative">
+                                                <input type="text" id="pile_supplier_accept_date" name="pile_supplier_accept_date" class="form-control datepicker" style="width: 180px;" placeholder="วันที่-เดือน-ปี" value="{{ old('pile_supplier_accept_date', $blog->pile_supplier_accept_date) }}">
+                                                <i class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
                                             </div>
                                         </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="price" class="ms-2" style="width: 50px;">Price</label>
-                                            <div class="d-flex flex-column  ">
-                                                <input type="number" name="price" class="form-control"
-                                                    style="width: 120px;" placeholder="กรุณากรอกตัวเลข"
-                                                    value="{{ $blog->price }}">
-                                            </div>
+                                        <div class="d-flex align-items-center">
+                                            <label for="wo_no" class="me-2" style="width: 50px;">WO No.</label>
+                                            <input type="text" name="wo_no" class="form-control" style="width: 180px;" value="{{ $blog->wo_no }}">
                                         </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="pile_supplier_accept_date" class="me-1 ms-2"
-                                                style="width: 150px;">Pile Supplier Accept Date</label>
-                                            <div class="flex-grow-1 position-relative">
-                                                <input type="text" id="pile_supplier_accept_date"
-                                                    name="pile_supplier_accept_date" style="width: 140px;"
-                                                    class="form-control datepicker pe-5" placeholder="วันที่-เดือน-ปี"
-                                                    value="{{ old('pile_supplier_accept_date', $blog->pile_supplier_accept_date) }}">
-                                                <!--DATE -->
-                                                <i
-                                                    class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="wo_no" class="me-2 ms-2" style="width: 50px;">WO
-                                                No.</label>
-                                            <div class="d-flex flex-column ">
-                                                <input type="text" name="wo_no" class="form-control"
-                                                    style="width: 160px;" value="{{ $blog->wo_no }}">
-                                            </div>
-                                        </div>
-
                                     </div>
-
-
-
+                    
                                     <!-- บรรทัด 2 -->
-
-                                    <div class="col-md-3 d-flex align-items-center flex-wrap mt-2">
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="accept_1" class="me-4" style="width: 100px;">Accept
-                                                1</label>
-
-                                            <div class="flex-grow-1 position-relative">
-                                                <input type="text" id="accept_1" name="accept_1"
-                                                    style="width: 160px;" class="form-control datepicker pe-5"
-                                                    placeholder="วันที่-เดือน-ปี"
-                                                    value="{{ old('accept_1', $blog->accept_1) }}"> <!--DATE -->
-                                                <i
-                                                    class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
+                                    <div class="d-flex flex-wrap gap-3 mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <label for="accept_1" class="me-2" style="width: 90px;">Accept 1</label>
+                                            <div class="position-relative">
+                                                <input type="text" id="accept_1" name="accept_1" class="form-control datepicker" style="width: 180px;" placeholder="วันที่-เดือน-ปี" value="{{ old('accept_1', $blog->accept_1) }}">
+                                                <i class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
                                             </div>
                                         </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2" style="gap: 3rem;">
-                                            <label for="accept_2" class="me-2 " style="width: 100px;">Accept 2
-                                            </label>
-
-                                            <div class="flex-grow-1 position-relative">
-                                                <input type="text" id="accept_2" name="accept_2"
-                                                    style="width: 160px;" class="form-control datepicker pe-5"
-                                                    placeholder="วันที่-เดือน-ปี"
-                                                    value="{{ old('accept_2', $blog->accept_2) }}"> <!--DATE -->
-                                                <i
-                                                    class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
+                                        <div class="d-flex align-items-center">
+                                            <label for="accept_2" class="me-2" style="width: 52px;">Accept 2</label>
+                                            <div class="position-relative">
+                                                <input type="text" id="accept_2" name="accept_2" class="form-control datepicker" style="width: 180px;" placeholder="วันที่-เดือน-ปี" value="{{ old('accept_2', $blog->accept_2) }}">
+                                                <i class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
                                             </div>
                                         </div>
-
-                                        <div class="d-flex align-items-center mb-3 " style="gap:17px;">
-                                            <label for="accept_3" class="me-2 ms-2" style="width: 120px;">Accept 3
-                                            </label>
-                                            <div class="flex-grow-1 position-relative">
-                                                <input type="text" id="accept_3" name="accept_3"
-                                                    style="width: 150px;" class="form-control datepicker pe-5"
-                                                    placeholder="วันที่-เดือน-ปี"
-                                                    value="{{ old('accept_3', $blog->accept_3) }}">
-                                                <i
-                                                    class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
+                                        <div class="d-flex align-items-center">
+                                            <label for="accept_3" class="me-2" style="width: 52px;">Accept 3</label>
+                                            <div class="position-relative">
+                                                <input type="text" id="accept_3" name="accept_3" class="form-control datepicker" style="width: 180px;" placeholder="วันที่-เดือน-ปี" value="{{ old('accept_3', $blog->accept_3) }}">
+                                                <i class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
                                             </div>
                                         </div>
                                     </div>
-
-
+                    
                                     <!-- บรรทัด 3 -->
-
-                                    <div class="col-md-3 d-flex align-items-center flex-wrap mt-2">
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="sub_extra_work" class="me-4" style="width: 100px;">Sub Extra
-                                                Work</label>
-                                            <div class="d-flex flex-column ">
-                                                <input type="text" name="sub_extra_work" class="form-control"
-                                                    style="width: 160px;" value="{{ $blog->sub_extra_work }}">
-                                            </div>
+                                    <div class="d-flex flex-wrap gap-3 mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <label for="sub_extra_work" class="me-2" style="width: 92px;">Sub Extra Work</label>
+                                            <input type="text" name="sub_extra_work" class="form-control" style="width: 180px;" value="{{ $blog->sub_extra_work }}">
                                         </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="sub_extra_work_price" class="me-2" style="width: 150px;">Sub
-                                                Extra Work Price </label>
-
-                                            <div class="d-flex flex-column  ">
-                                                <input type="number" name="sub_extra_work_price" class="form-control"
-                                                    style="width: 160px;" placeholder="กรุณากรอกตัวเลข"
-                                                    value="{{ $blog->sub_extra_work_price }}">
-                                            </div>
+                                        <div class="d-flex align-items-center">
+                                            <label for="sub_extra_work_price" class="me-2" style="width: 124px;">Sub Extra Work Price</label>
+                                            <input type="number" name="sub_extra_work_price" class="form-control" style="width: 180px;" placeholder="กรุณากรอกตัวเลข" value="{{ $blog->sub_extra_work_price }}">
                                         </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="extra_work_accept_date" class="me-1"
-                                                style="width: 140px;">Sub Extra Work Date </label>
-
-
-                                            <div class="flex-grow-1 position-relative">
-                                                <input type="text" id="extra_work_accept_date"
-                                                    name="extra_work_accept_date" style="width: 150px;"
-                                                    class="form-control datepicker pe-5" placeholder="วันที่-เดือน-ปี"
-                                                    value="{{ old('extra_work_accept_date', $blog->extra_work_accept_date) }}">
-                                                <!--DATE -->
-                                                <i
-                                                    class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- บรรทัด 4 -->
-                                    <div class="col-md-3 d-flex align-items-center flex-wrap mt-2">
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="build_permit" class="me-1" style="width: 120px;">Build
-                                                Permit Price</label>
-                                            <div class="d-flex flex-column  ">
-                                                <input type="number" name="build_permit" class="form-control"
-                                                    style="width: 160px;" placeholder="กรุณากรอกตัวเลข"
-                                                    value="{{ $blog->build_permit }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2 " style="gap: 2rem">
-                                            <label for="payment_to" class="me-1" style="width: 120px;">Payment
-                                                to</label>
-                                            <div class="d-flex flex-column ">
-                                                <input type="text" name="payment_to" class="form-control"
-                                                    value="{{ $blog->payment_to }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center mb-3 ms-2">
-                                            <label for="payment_date" class="me-2 ms-1" style="width: 131px;">Payment
-                                                Date</label>
-
-                                            <div class="flex-grow-1 position-relative">
-                                                <input type="text" id="payment_date" name="payment_date"
-                                                    style="width: 150px;" class="form-control datepicker pe-5"
-                                                    placeholder="วันที่-เดือน-ปี"
-                                                    value="{{ old('payment_date', $blog->payment_date) }}">
-                                                <i
-                                                    class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
+                                        <div class="d-flex align-items-center">
+                                            <label for="extra_work_accept_date" class="me-2" style="width: 124px;">Sub Extra Work Date</label>
+                                            <div class="position-relative">
+                                                <input type="text" id="extra_work_accept_date" name="extra_work_accept_date" class="form-control datepicker" style="width: 180px;" placeholder="วันที่-เดือน-ปี" value="{{ old('extra_work_accept_date', $blog->extra_work_accept_date) }}">
+                                                <i class="bi bi-calendar position-absolute top-50 end-0 translate-middle-y pe-2"></i>
                                             </div>
                                         </div>
                                     </div>
-
+                    
                                 </div>
-
                             </div>
                         </div>
                     </div>
+                    
 
 
                 </div>
 
 
-                <div class="container text-center mb-3">
-                    <!-- Loader (ซ่อนตอนแรก) -->
-                    <div id="loadingSpinner" class="hidden mt-3 text-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">กำลังอัปเดตข้อมูล...</span>
-                        </div>
-                        <p class="text-sm text-gray-600">โปรดรอสักครู่ ...</p>
-                    </div>
-
-                    <!-- ปุ่มกดอัปเดต -->
-                    <input type="submit" id="updateBtn" class="btn btn-success my-3" value="อัปเดต">
-                    <a href="/blog" id="cancelBtn" class="btn btn-danger">หน้าแรก</a>
+                <div class="container text-center mb-3 ">
+                    <input type="submit" value="อัปเดต" class="btn btn-success my-3"
+                        onclick="return confirmUpdate()">
+                    <a href="/blog" class="btn btn-danger">หน้าแรก</a>
                 </div>
 
 
@@ -4493,37 +4299,20 @@
                     });
                 </script>
 
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        // เปิด modal เมื่อโหลดหน้า
-                        var myModal = new bootstrap.Modal(document.getElementById('successModal'), {
-                            keyboard: false
-                        });
-                        myModal.show(); // แสดง Modal
-                    });
-                </script>
 
-
-                <!-- JavaScript -->
                 <script>
-                    document.getElementById("updateForm").addEventListener("submit", function(event) {
-                        let confirmUpdate = confirm("ยืนยันการอัปเดตหรือไม่?");
-                        if (!confirmUpdate) {
-                            event.preventDefault(); // ยกเลิกการส่งฟอร์ม ถ้าผู้ใช้กด Cancel
-                            return;
+                    function confirmUpdate() {
+                        // แสดงกล่องยืนยัน
+
+                        if (confirm('คุณต้องการอัปเดตข้อมูลหรือไม่?')) {
+                            return true; // ถ้าผู้ใช้ยืนยัน ให้ส่งฟอร์ม
+                        } else {
+                            return false; // ถ้าผู้ใช้ยกเลิก ไม่ส่งฟอร์ม
                         }
-
-                        // ซ่อนปุ่มอัปเดตและปุ่มยกเลิก
-                        document.getElementById("updateBtn").style.display = 'none';
-                        document.getElementById("cancelBtn").style.display = 'none';
-
-                        // แสดง Loader
-                        document.getElementById("loadingSpinner").classList.remove("hidden");
-
-                    });
+                    }
                 </script>
 
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
                 <script>
                     document.querySelectorAll('input[placeholder="กรุณากรอกตัวเลข"]').forEach(function(element) {
                         element.addEventListener('blur', function(e) {
