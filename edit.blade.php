@@ -451,6 +451,20 @@
                                                 <h5 class="fw-bold text-primary">Civil Design</h5>
                                             </div>
                                         
+                                            <!-- PO Amount Design (ส่วนที่พี่ฟ้าให้เพิ่ม) -->
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label for="PO_Amount_Design" class="me-2 mb-0" style="width: 80px;">PO Amount</label>
+                                                <div class="position-relative">
+                                                    <input type="number"
+                                                           id="PO_Amount_Design"
+                                                           name="PO_Amount_Design"
+                                                           class="form-control"
+                                                           placeholder="กรุณากรอกตัวเลข"
+                                                           style="width: 160px;"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                        
                                             <!-- Row 1: Invoice 1 + Amount 1 -->
                                             <div class="d-flex flex-wrap gap-3 mb-2">
                                                 <!-- Invoice 1 -->
@@ -479,6 +493,7 @@
                                                            style="width: 160px;"
                                                            value="{{ $blog->Amount1_IN }}">
                                                 </div>
+                                        
                                                 <img src="/checkmark.png" width="18" height="18" alt="cross">
                                             </div>
                                         
@@ -510,9 +525,11 @@
                                                            style="width: 160px;"
                                                            value="{{ $blog->Amount2_IN }}">
                                                 </div>
+                                        
                                                 <img src="/checkmark.png" width="18" height="18" alt="cross">
                                             </div>
                                         </div>
+                                        
 
 
                                         
@@ -520,6 +537,20 @@
                                             <!-- Section Title -->
                                             <div class="mb-3">
                                                 <h5 class="fw-bold text-primary">Civil Construction</h5>
+                                            </div>
+                                        
+                                            <!-- PO Amount Civil (ส่วนที่พี่ฟ้าให้เพิ่ม) -->
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label for="PO_Amount_Civil" class="me-2 mb-0" style="width: 80px;">PO Amount</label>
+                                                <div class="position-relative">
+                                                    <input type="number"
+                                                           id="PO_Amount_Civil"
+                                                           name="PO_Amount_Civil"
+                                                           class="form-control"
+                                                           placeholder="กรุณากรอกตัวเลข"
+                                                           style="width: 160px;"
+                                                           value="">
+                                                </div>
                                             </div>
                                         
                                             <!-- Row 1: Invoice 1 + Amount 1 -->
